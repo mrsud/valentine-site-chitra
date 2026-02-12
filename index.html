@@ -1,149 +1,158 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For My Pyare Dost 💖</title>
+<title>My Magical Proposal 💖</title>
 
 <style>
 body {
-    text-align: center;
+    margin:0;
+    text-align:center;
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    overflow: hidden;
-    padding-top: 80px;
+    overflow:hidden;
+    transition:1s;
 }
 
 h1 {
-    font-size: 32px;
-    color: white;
-    text-shadow: 2px 2px 5px #ff3366;
+    color:white;
+    margin-top:100px;
+    text-shadow:2px 2px 10px #ff0066;
 }
 
 button {
-    padding: 12px 25px;
-    font-size: 20px;
-    margin: 20px;
-    cursor: pointer;
-    border-radius: 10px;
-    border: none;
-    transition: 0.3s;
+    padding:12px 25px;
+    font-size:20px;
+    margin:20px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
 }
 
-#yesBtn {
-    background-color: #ff3366;
-    color: white;
-}
+#yesBtn { background:#ff0066; color:white; }
+#noBtn { background:black; color:white; position:absolute; }
 
-#noBtn {
-    background-color: black;
-    color: white;
-    position: absolute;
-}
-
-/* Floating hearts */
-.heart {
-    position: fixed;
-    top: -10px;
-    animation: fall 5s linear infinite;
+.fall {
+    position:fixed;
+    top:-50px;
+    animation:fall linear forwards;
 }
 
 @keyframes fall {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(100vh); }
+    to { transform:translateY(110vh) rotate(360deg); }
 }
 
-/* Balloons */
-.balloon {
-    position: fixed;
-    bottom: -50px;
-    animation: rise 6s linear infinite;
+.glowLove {
+    font-size:60px;
+    color:white;
+    animation:glow 1.5s infinite alternate;
 }
 
-@keyframes rise {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-120vh); }
+@keyframes glow {
+    from { text-shadow:0 0 10px #fff, 0 0 20px #ff0066; }
+    to { text-shadow:0 0 30px #fff, 0 0 60px #ff0066; }
 }
 
-/* Cute characters */
-.characters {
-    font-size: 60px;
-    margin-bottom: 20px;
+.baby {
+    position:fixed;
+    font-size:70px;
+    animation:peek 4s ease-in-out;
+}
+
+@keyframes peek {
+    0% { transform:scale(0); opacity:0; }
+    40% { transform:scale(1); opacity:1; }
+    100% { transform:scale(0); opacity:0; }
+}
+
+.sparkle {
+    position:fixed;
+    font-size:20px;
+    animation:spark 3s linear forwards;
+}
+
+@keyframes spark {
+    to { transform:translateY(-100vh); opacity:0; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="characters">
-    🧸 💙 😺
-</div>
-
-<h1>Will you be my Valentine 💕<br>mere pyare dost? 🥺</h1>
+<h1 id="text">Will you be my forever? 💕</h1>
 
 <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
-<button id="noBtn" onmouseover="moveButton()">No 🙈</button>
+<button id="noBtn" onmouseover="moveNo()">No 🙈</button>
 
-<audio autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+<audio id="music" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
 </audio>
 
 <script>
-let noSize = 20;
 
-function yesClicked() {
-    document.body.innerHTML = `
-    <div style="font-size:70px;">🧸💖😺</div>
-    <h1 style='color:white;'>Waaaooo 😍💖<br>I won in my life 🥳💕<br>You are my forever Valentine 💘</h1>
-    `;
-    confettiEffect();
+function yesClicked(){
+
+document.body.style.background="linear-gradient(to right,#ff0844,#ffb199)";
+document.getElementById("text").innerHTML="<div class='glowLove'>thank you queen for yes💖</div>";
+
+document.getElementById("yesBtn").style.display="none";
+document.getElementById("noBtn").style.display="none";
+
+let music=document.getElementById("music");
+music.volume=0.2;
+music.play();
+
+startRain();
+startBaby();
+startSparkle();
 }
 
-function moveButton() {
-    var button = document.getElementById("noBtn");
-    var x = Math.random() * (window.innerWidth - 100);
-    var y = Math.random() * (window.innerHeight - 50);
-    button.style.left = x + "px";
-    button.style.top = y + "px";
-
-    if(noSize > 8){
-        noSize -= 1;
-        button.style.fontSize = noSize + "px";
-    }
+function moveNo(){
+let btn=document.getElementById("noBtn");
+btn.style.left=Math.random()*90+"vw";
+btn.style.top=Math.random()*90+"vh";
 }
 
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
+function startRain(){
+const items=["🌹","🍫","🧸","💖","🌹","🍬"];
+
+setInterval(()=>{
+for(let i=0;i<5;i++){
+let item=document.createElement("div");
+item.classList.add("fall");
+item.innerHTML=items[Math.floor(Math.random()*items.length)];
+item.style.left=Math.random()*100+"vw";
+item.style.fontSize=Math.random()*30+30+"px";
+item.style.animationDuration=Math.random()*3+3+"s";
+document.body.appendChild(item);
+setTimeout(()=>item.remove(),6000);
+}
+},200);
 }
 
-function createBalloon() {
-    const balloon = document.createElement("div");
-    balloon.classList.add("balloon");
-    balloon.innerHTML = "🎈";
-    balloon.style.left = Math.random() * 100 + "vw";
-    balloon.style.fontSize = "30px";
-    document.body.appendChild(balloon);
-    setTimeout(() => balloon.remove(), 6000);
+function startBaby(){
+setInterval(()=>{
+let baby=document.createElement("div");
+baby.classList.add("baby");
+baby.innerHTML="👶";
+baby.style.left=Math.random()*90+"vw";
+baby.style.top=Math.random()*70+"vh";
+document.body.appendChild(baby);
+setTimeout(()=>baby.remove(),4000);
+},5000);
 }
 
-setInterval(createHeart, 300);
-setInterval(createBalloon, 800);
-
-function confettiEffect() {
-    for (let i = 0; i < 80; i++) {
-        let confetti = document.createElement("div");
-        confetti.innerHTML = "✨";
-        confetti.style.position = "fixed";
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.top = Math.random() * 100 + "vh";
-        confetti.style.fontSize = "20px";
-        document.body.appendChild(confetti);
-    }
+function startSparkle(){
+setInterval(()=>{
+let sp=document.createElement("div");
+sp.classList.add("sparkle");
+sp.innerHTML="✨";
+sp.style.left=Math.random()*100+"vw";
+sp.style.top=Math.random()*100+"vh";
+document.body.appendChild(sp);
+setTimeout(()=>sp.remove(),3000);
+},300);
 }
+
 </script>
 
 </body>
