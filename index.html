@@ -1,149 +1,140 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For My Pyare Dost 💖</title>
+<title>For My Cute Princess 💖</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
     text-align: center;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(45deg, #ffb6c1, #ffd1dc, #ffe4e1);
     overflow: hidden;
-    padding-top: 80px;
+    padding-top: 60px;
 }
 
 h1 {
-    font-size: 32px;
-    color: white;
-    text-shadow: 2px 2px 5px #ff3366;
+    font-size: 26px;
+    color: #ff1493;
+    text-shadow: 2px 2px 5px white;
 }
 
 button {
     padding: 12px 25px;
-    font-size: 20px;
-    margin: 20px;
-    cursor: pointer;
-    border-radius: 10px;
+    font-size: 18px;
+    margin: 15px;
+    border-radius: 20px;
     border: none;
     transition: 0.3s;
 }
 
 #yesBtn {
-    background-color: #ff3366;
+    background-color: #ff69b4;
     color: white;
+    box-shadow: 0 0 15px pink;
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
 }
 
 #noBtn {
-    background-color: black;
+    background-color: #333;
     color: white;
     position: absolute;
 }
 
-/* Floating hearts */
+/* Cute emoji row */
+.characters {
+    font-size: 55px;
+    margin-bottom: 15px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%,100%{ transform: translateY(0);}
+    50%{ transform: translateY(-10px);}
+}
+
+/* Hearts floating */
 .heart {
     position: fixed;
     top: -10px;
-    animation: fall 5s linear infinite;
+    animation: fall 4s linear infinite;
 }
 
 @keyframes fall {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(100vh); }
+    to { transform: translateY(110vh);}
 }
 
-/* Balloons */
-.balloon {
-    position: fixed;
-    bottom: -50px;
-    animation: rise 6s linear infinite;
-}
-
-@keyframes rise {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-120vh); }
-}
-
-/* Cute characters */
-.characters {
-    font-size: 60px;
-    margin-bottom: 20px;
-}
 </style>
 </head>
 
 <body>
 
 <div class="characters">
-    🧸 💙 😺
+🐭 🧸 🐱 ⚡ 💖
 </div>
 
-<h1>Will you be my Valentine 💕<br>mere pyare dost? 🥺</h1>
+<h1>Will you be my Valentine? 💕<br>meri cute si princess? 🥺</h1>
 
 <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
-<button id="noBtn" onmouseover="moveButton()">No 🙈</button>
-
-<audio autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
+<button id="noBtn" ontouchstart="moveButton()" onclick="moveButton()">No 🙈</button>
 
 <script>
-let noSize = 20;
+
+let noSize = 18;
 
 function yesClicked() {
     document.body.innerHTML = `
-    <div style="font-size:70px;">🧸💖😺</div>
-    <h1 style='color:white;'>Waaaooo 😍💖<br>I won in my life 🥳💕<br>You are my forever Valentine 💘</h1>
+    <div style="font-size:65px;">🐭💖🧸🐱⚡</div>
+    <h1 style='color:#ff1493;'>Yayyyyy 😍💕<br>
+    Ab tum officially meri ho 💘<br>
+    Pokemon bhi jealous ho jayega ⚡🥰</h1>
     `;
-    confettiEffect();
+    confetti();
 }
 
 function moveButton() {
-    var button = document.getElementById("noBtn");
-    var x = Math.random() * (window.innerWidth - 100);
-    var y = Math.random() * (window.innerHeight - 50);
+    let button = document.getElementById("noBtn");
+
+    let x = Math.random() * (window.innerWidth - 100);
+    let y = Math.random() * (window.innerHeight - 50);
+
     button.style.left = x + "px";
     button.style.top = y + "px";
 
-    if(noSize > 8){
+    if(noSize > 10){
         noSize -= 1;
         button.style.fontSize = noSize + "px";
     }
 }
 
 function createHeart() {
-    const heart = document.createElement("div");
+    let heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "💖";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
+    setTimeout(() => heart.remove(), 4000);
 }
 
-function createBalloon() {
-    const balloon = document.createElement("div");
-    balloon.classList.add("balloon");
-    balloon.innerHTML = "🎈";
-    balloon.style.left = Math.random() * 100 + "vw";
-    balloon.style.fontSize = "30px";
-    document.body.appendChild(balloon);
-    setTimeout(() => balloon.remove(), 6000);
-}
+setInterval(createHeart, 400);
 
-setInterval(createHeart, 300);
-setInterval(createBalloon, 800);
-
-function confettiEffect() {
-    for (let i = 0; i < 80; i++) {
-        let confetti = document.createElement("div");
-        confetti.innerHTML = "✨";
-        confetti.style.position = "fixed";
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.top = Math.random() * 100 + "vh";
-        confetti.style.fontSize = "20px";
-        document.body.appendChild(confetti);
+function confetti() {
+    for (let i = 0; i < 60; i++) {
+        let spark = document.createElement("div");
+        spark.innerHTML = "✨";
+        spark.style.position = "fixed";
+        spark.style.left = Math.random() * 100 + "vw";
+        spark.style.top = Math.random() * 100 + "vh";
+        spark.style.fontSize = "20px";
+        document.body.appendChild(spark);
     }
 }
+
 </script>
 
 </body>
