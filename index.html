@@ -13,6 +13,42 @@ body {
     transition:1s;
 }
 
+/* ✨ NEW FRONT NAME STYLE */
+.chitraName{
+    position:absolute;
+    top:20%;
+    width:100%;
+    font-size:80px;
+    color:white;
+    text-shadow:0 0 30px #ff1493;
+    opacity:0;
+    animation:fadeInName 3s forwards, jumpName 2s infinite 3s;
+    z-index:2;
+}
+
+@keyframes fadeInName{
+    to{ opacity:1; }
+}
+
+@keyframes jumpName{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-20px); }
+}
+
+/* Background characters */
+.bgChar{
+    position:fixed;
+    font-size:70px;
+    animation:popChar 4s ease-in-out forwards;
+    z-index:1;
+}
+
+@keyframes popChar{
+    0%{ transform:scale(0); opacity:0; }
+    40%{ transform:scale(1); opacity:1; }
+    100%{ transform:scale(0); opacity:0; }
+}
+
 h1 {
     color:white;
     margin-top:100px;
@@ -78,7 +114,10 @@ button {
 
 <body>
 
-<h1 id="text">Will you be my forever? 💕</h1>
+<!-- 💖 NEW FRONT NAME -->
+<div class="chitraName">Chitra 💖</div>
+
+<h1 id="text">Will you be my Valentine? 💕</h1>
 
 <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
 <button id="noBtn" onmouseover="moveNo()">No 🙈</button>
@@ -89,6 +128,23 @@ button {
 
 <script>
 
+/* 💙 Doraemon + Pikachu Background Animation */
+const characters = ["💙","⚡","🌸","✨","🌈","💖"];
+
+function randomBackgroundChar(){
+    let char=document.createElement("div");
+    char.classList.add("bgChar");
+    char.innerHTML=characters[Math.floor(Math.random()*characters.length)];
+    char.style.left=Math.random()*90+"vw";
+    char.style.top=Math.random()*70+"vh";
+    document.body.appendChild(char);
+    setTimeout(()=>char.remove(),4000);
+}
+
+setInterval(randomBackgroundChar,3000);
+
+/* ===== YOUR ORIGINAL CODE SAME ===== */
+
 function yesClicked(){
 
 document.body.style.background="linear-gradient(to right,#ff0844,#ffb199)";
@@ -96,6 +152,7 @@ document.getElementById("text").innerHTML="<div class='glowLove'>thank you queen
 
 document.getElementById("yesBtn").style.display="none";
 document.getElementById("noBtn").style.display="none";
+document.querySelector(".chitraName").style.display="none";
 
 let music=document.getElementById("music");
 music.volume=0.2;
