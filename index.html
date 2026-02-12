@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>For My Cute Princess 💖</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -35,39 +34,24 @@ button {
     box-shadow: 0 0 15px pink;
 }
 
-#yesBtn:hover {
-    transform: scale(1.1);
-}
-
 #noBtn {
     background-color: #333;
     color: white;
     position: absolute;
 }
 
-/* Cute emoji row */
 .characters {
     font-size: 55px;
     margin-bottom: 15px;
-    animation: bounce 2s infinite;
 }
-
-@keyframes bounce {
-    0%,100%{ transform: translateY(0);}
-    50%{ transform: translateY(-10px);}
-}
-
-/* Hearts floating */
 .heart {
     position: fixed;
     top: -10px;
     animation: fall 4s linear infinite;
 }
-
 @keyframes fall {
     to { transform: translateY(110vh);}
 }
-
 </style>
 </head>
 
@@ -82,26 +66,33 @@ button {
 <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
 <button id="noBtn" ontouchstart="moveButton()" onclick="moveButton()">No 🙈</button>
 
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
 <script>
 
 let noSize = 18;
 
 function yesClicked() {
+
+    // 🎵 Play music after click
+    document.getElementById("bgMusic").play();
+
     document.body.innerHTML = `
     <div style="font-size:65px;">🐭💖🧸🐱⚡</div>
     <h1 style='color:#ff1493;'>Yayyyyy 😍💕<br>
-    Ab tum officially meri ho 💘<br>
-    Pokemon bhi jealous ho jayega ⚡🥰</h1>
+    Ab tum officially meri ho 💘</h1>
     `;
+
     confetti();
 }
 
 function moveButton() {
     let button = document.getElementById("noBtn");
-
     let x = Math.random() * (window.innerWidth - 100);
     let y = Math.random() * (window.innerHeight - 50);
-
     button.style.left = x + "px";
     button.style.top = y + "px";
 
