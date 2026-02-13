@@ -2,56 +2,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Disney Dream Island 🏰✨</title>
+<title>Disney Magical Apology 🏰✨</title>
 
 <style>
-
-/* GOOGLE FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&display=swap');
 
 body{
 margin:0;
 overflow:hidden;
 height:100vh;
 font-family:'Fredoka One', cursive;
-background:linear-gradient(to top,#1e3c72,#2a5298,#ff9a9e);
-background-size:400% 400%;
-animation:bgMove 12s infinite alternate;
-cursor:url("https://cur.cursors-4u.net/animals/ani-12/ani1111.cur"), auto;
+background:linear-gradient(to top,#0f2027,#203a43,#2c5364);
+transition:1.5s;
 }
 
-/* Background animation */
-@keyframes bgMove{
-0%{background-position:left;}
-100%{background-position:right;}
-}
-
-/* Disney Castle */
-.castle{
+/* 3D Perspective */
+.scene{
+perspective:1000px;
 position:absolute;
-bottom:0;
 width:100%;
-text-align:center;
-font-size:200px;
-opacity:0.15;
+height:100%;
 }
 
-/* Ocean */
-.ocean{
-position:absolute;
-bottom:0;
-width:100%;
-height:30%;
-background:linear-gradient(to top,#0077b6,#00b4d8);
-}
-
-/* Main Glass Card */
+/* Card */
 .box{
 position:absolute;
 top:45%;
 left:50%;
 transform:translate(-50%,-50%);
-background:rgba(255,255,255,0.15);
+background:rgba(255,255,255,0.1);
 padding:40px;
 border-radius:30px;
 backdrop-filter:blur(12px);
@@ -60,13 +39,14 @@ text-align:center;
 color:white;
 width:90%;
 max-width:550px;
+transition:1s;
 }
 
-/* Barbie Pink Text */
+/* Title */
 .title{
-font-size:32px;
+font-size:30px;
 color:#ff69b4;
-text-shadow:0 0 15px #ff1493,0 0 30px #ff69b4;
+text-shadow:0 0 20px #ff1493;
 margin-bottom:20px;
 font-family:'Pacifico', cursive;
 }
@@ -82,53 +62,86 @@ background:#ff1493;
 color:white;
 box-shadow:0 0 25px #ff69b4;
 transition:0.3s;
-font-family:'Fredoka One', cursive;
 }
 
 button:hover{
 transform:scale(1.1);
-background:#ff69b4;
+}
+
+/* Final Scene */
+.finalScene{
+position:absolute;
+width:100%;
+height:100%;
+display:none;
+background:radial-gradient(circle at center,#ff9a9e,#fad0c4,#2c5364);
+text-align:center;
+color:white;
+overflow:hidden;
+}
+
+/* Moon */
+.moon{
+position:absolute;
+top:10%;
+right:10%;
+font-size:100px;
+animation:float 6s infinite ease-in-out;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+/* 3D Text */
+.finalText{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) rotateY(0deg);
+font-size:40px;
+font-family:'Pacifico', cursive;
+text-shadow:0 0 30px white;
+animation:rotate3d 6s infinite alternate;
+}
+
+@keyframes rotate3d{
+from{transform:translate(-50%,-50%) rotateY(-15deg);}
+to{transform:translate(-50%,-50%) rotateY(15deg);}
 }
 
 /* Floating Hearts */
 .heart{
 position:absolute;
 font-size:25px;
-animation:floatUp 4s linear forwards;
+animation:rise 5s linear forwards;
 }
 
-@keyframes floatUp{
+@keyframes rise{
 from{transform:translateY(100vh);}
 to{transform:translateY(-20vh);opacity:0;}
-}
-
-/* Mickey Decoration */
-.mickey{
-position:absolute;
-top:10%;
-left:10%;
-font-size:80px;
-animation:bounce 3s infinite;
-}
-
-@keyframes bounce{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-15px);}
 }
 
 </style>
 </head>
 <body>
 
-<div class="castle">🏰</div>
-<div class="ocean"></div>
-<div class="mickey">🐭✨</div>
-
-<div class="box">
+<div class="scene">
+<div class="box" id="box">
 <div class="title" id="mainText">
 Please maaf kar do na 🥺💖
 </div>
-<button onclick="nextStep()">Haan maaf kiya 🤍</button>
+<button id="btn" onclick="nextStep()">Haan maaf kiya 🤍</button>
+</div>
+</div>
+
+<div class="finalScene" id="finalScene">
+<div class="moon">🌙✨</div>
+<div class="finalText">
+You are my forever fairy tale 💖✨<br>
+Thank you for forgiving me 🥹
+</div>
 </div>
 
 <script>
@@ -141,24 +154,33 @@ const messages = [
 "Ab gussa bilkul zero? 💕",
 "Chalo castle ke saamne dance karein 💃✨",
 "Promise kabhi hurt nahi karunga 🤍",
-"You are my Barbie fairy tale 🩷✨"
+"Last click... surprise ready hai 😌✨"
 ];
 
 function nextStep(){
 
 if(step < messages.length){
 document.getElementById("mainText").innerHTML = messages[step];
+document.getElementById("btn").innerHTML = "Next 💖";
 step++;
 }
+else{
+showFinalScene();
+}
 
-/* Floating Heart */
+/* Floating hearts */
 let heart=document.createElement("div");
 heart.className="heart";
 heart.innerHTML="💖";
 heart.style.left=Math.random()*100+"vw";
 document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),4000);
+setTimeout(()=>heart.remove(),5000);
 
+}
+
+function showFinalScene(){
+document.getElementById("box").style.display="none";
+document.getElementById("finalScene").style.display="block";
 }
 
 </script>
