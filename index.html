@@ -1,213 +1,164 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Magical Proposal 💖</title>
+<meta charset="UTF-8">
+<title>Disney Dream Island 🏰✨</title>
 
 <style>
-body {
-    margin:0;
-    text-align:center;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    overflow:hidden;
-    transition:1s;
+
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Pacifico&display=swap');
+
+body{
+margin:0;
+overflow:hidden;
+height:100vh;
+font-family:'Fredoka One', cursive;
+background:linear-gradient(to top,#1e3c72,#2a5298,#ff9a9e);
+background-size:400% 400%;
+animation:bgMove 12s infinite alternate;
+cursor:url("https://cur.cursors-4u.net/animals/ani-12/ani1111.cur"), auto;
 }
 
-/* ✨ NEW FRONT NAME STYLE */
-.chitraName{
-    position:absolute;
-    top:20%;
-    width:100%;
-    font-size:80px;
-    color:white;
-    text-shadow:0 0 30px #ff1493;
-    opacity:0;
-    animation:fadeInName 3s forwards, jumpName 2s infinite 3s;
-    z-index:2;
+/* Background animation */
+@keyframes bgMove{
+0%{background-position:left;}
+100%{background-position:right;}
 }
 
-@keyframes fadeInName{
-    to{ opacity:1; }
+/* Disney Castle */
+.castle{
+position:absolute;
+bottom:0;
+width:100%;
+text-align:center;
+font-size:200px;
+opacity:0.15;
 }
 
-@keyframes jumpName{
-    0%,100%{ transform:translateY(0); }
-    50%{ transform:translateY(-20px); }
+/* Ocean */
+.ocean{
+position:absolute;
+bottom:0;
+width:100%;
+height:30%;
+background:linear-gradient(to top,#0077b6,#00b4d8);
 }
 
-/* Background characters */
-.bgChar{
-    position:fixed;
-    font-size:70px;
-    animation:popChar 4s ease-in-out forwards;
-    z-index:1;
+/* Main Glass Card */
+.box{
+position:absolute;
+top:45%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(255,255,255,0.15);
+padding:40px;
+border-radius:30px;
+backdrop-filter:blur(12px);
+box-shadow:0 0 60px rgba(255,255,255,0.6);
+text-align:center;
+color:white;
+width:90%;
+max-width:550px;
 }
 
-@keyframes popChar{
-    0%{ transform:scale(0); opacity:0; }
-    40%{ transform:scale(1); opacity:1; }
-    100%{ transform:scale(0); opacity:0; }
+/* Barbie Pink Text */
+.title{
+font-size:32px;
+color:#ff69b4;
+text-shadow:0 0 15px #ff1493,0 0 30px #ff69b4;
+margin-bottom:20px;
+font-family:'Pacifico', cursive;
 }
 
-h1 {
-    color:white;
-    margin-top:100px;
-    text-shadow:2px 2px 10px #ff0066;
+/* Button */
+button{
+padding:14px 30px;
+font-size:20px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+background:#ff1493;
+color:white;
+box-shadow:0 0 25px #ff69b4;
+transition:0.3s;
+font-family:'Fredoka One', cursive;
 }
 
-button {
-    padding:12px 25px;
-    font-size:20px;
-    margin:20px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
+button:hover{
+transform:scale(1.1);
+background:#ff69b4;
 }
 
-#yesBtn { background:#ff0066; color:white; }
-#noBtn { background:black; color:white; position:absolute; }
-
-.fall {
-    position:fixed;
-    top:-50px;
-    animation:fall linear forwards;
+/* Floating Hearts */
+.heart{
+position:absolute;
+font-size:25px;
+animation:floatUp 4s linear forwards;
 }
 
-@keyframes fall {
-    to { transform:translateY(110vh) rotate(360deg); }
+@keyframes floatUp{
+from{transform:translateY(100vh);}
+to{transform:translateY(-20vh);opacity:0;}
 }
 
-.glowLove {
-    font-size:60px;
-    color:white;
-    animation:glow 1.5s infinite alternate;
+/* Mickey Decoration */
+.mickey{
+position:absolute;
+top:10%;
+left:10%;
+font-size:80px;
+animation:bounce 3s infinite;
 }
 
-@keyframes glow {
-    from { text-shadow:0 0 10px #fff, 0 0 20px #ff0066; }
-    to { text-shadow:0 0 30px #fff, 0 0 60px #ff0066; }
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
 }
 
-.baby {
-    position:fixed;
-    font-size:70px;
-    animation:peek 4s ease-in-out;
-}
-
-@keyframes peek {
-    0% { transform:scale(0); opacity:0; }
-    40% { transform:scale(1); opacity:1; }
-    100% { transform:scale(0); opacity:0; }
-}
-
-.sparkle {
-    position:fixed;
-    font-size:20px;
-    animation:spark 3s linear forwards;
-}
-
-@keyframes spark {
-    to { transform:translateY(-100vh); opacity:0; }
-}
 </style>
 </head>
-
 <body>
 
-<!-- 💖 NEW FRONT NAME -->
-<div class="chitraName">Chitra 💖</div>
+<div class="castle">🏰</div>
+<div class="ocean"></div>
+<div class="mickey">🐭✨</div>
 
-<h1 id="text">Will you be my Valentine? 💕</h1>
-
-<button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
-<button id="noBtn" onmouseover="moveNo()">No 🙈</button>
-
-<audio id="music" loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
-</audio>
+<div class="box">
+<div class="title" id="mainText">
+Please maaf kar do na 🥺💖
+</div>
+<button onclick="nextStep()">Haan maaf kiya 🤍</button>
+</div>
 
 <script>
 
-/* 💙 Doraemon + Pikachu Background Animation */
-const characters = ["💙","⚡","🌸","✨","🌈","💖"];
+let step = 0;
 
-function randomBackgroundChar(){
-    let char=document.createElement("div");
-    char.classList.add("bgChar");
-    char.innerHTML=characters[Math.floor(Math.random()*characters.length)];
-    char.style.left=Math.random()*90+"vw";
-    char.style.top=Math.random()*70+"vh";
-    document.body.appendChild(char);
-    setTimeout(()=>char.remove(),4000);
+const messages = [
+"Sach mein maaf kar diya? 🥹",
+"Tum meri Disney Princess ho 👑",
+"Ab gussa bilkul zero? 💕",
+"Chalo castle ke saamne dance karein 💃✨",
+"Promise kabhi hurt nahi karunga 🤍",
+"You are my Barbie fairy tale 🩷✨"
+];
+
+function nextStep(){
+
+if(step < messages.length){
+document.getElementById("mainText").innerHTML = messages[step];
+step++;
 }
 
-setInterval(randomBackgroundChar,3000);
+/* Floating Heart */
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),4000);
 
-/* ===== YOUR ORIGINAL CODE SAME ===== */
-
-function yesClicked(){
-
-document.body.style.background="linear-gradient(to right,#ff0844,#ffb199)";
-document.getElementById("text").innerHTML="<div class='glowLove'>thank you queen for yes💖</div>";
-
-document.getElementById("yesBtn").style.display="none";
-document.getElementById("noBtn").style.display="none";
-document.querySelector(".chitraName").style.display="none";
-
-let music=document.getElementById("music");
-music.volume=0.2;
-music.play();
-
-startRain();
-startBaby();
-startSparkle();
-}
-
-function moveNo(){
-let btn=document.getElementById("noBtn");
-btn.style.left=Math.random()*90+"vw";
-btn.style.top=Math.random()*90+"vh";
-}
-
-function startRain(){
-const items=["🌹","🍫","🧸","💖","🌹","🍬"];
-
-setInterval(()=>{
-for(let i=0;i<5;i++){
-let item=document.createElement("div");
-item.classList.add("fall");
-item.innerHTML=items[Math.floor(Math.random()*items.length)];
-item.style.left=Math.random()*100+"vw";
-item.style.fontSize=Math.random()*30+30+"px";
-item.style.animationDuration=Math.random()*3+3+"s";
-document.body.appendChild(item);
-setTimeout(()=>item.remove(),6000);
-}
-},200);
-}
-
-function startBaby(){
-setInterval(()=>{
-let baby=document.createElement("div");
-baby.classList.add("baby");
-baby.innerHTML="👶";
-baby.style.left=Math.random()*90+"vw";
-baby.style.top=Math.random()*70+"vh";
-document.body.appendChild(baby);
-setTimeout(()=>baby.remove(),4000);
-},5000);
-}
-
-function startSparkle(){
-setInterval(()=>{
-let sp=document.createElement("div");
-sp.classList.add("sparkle");
-sp.innerHTML="✨";
-sp.style.left=Math.random()*100+"vw";
-sp.style.top=Math.random()*100+"vh";
-document.body.appendChild(sp);
-setTimeout(()=>sp.remove(),3000);
-},300);
 }
 
 </script>
